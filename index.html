@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Upload Video Lokal (Simulasi)</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; background:#f0f0f0; }
+  .container { max-width: 500px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; }
+  video { width: 100%; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Upload Video (Simulasi Lokal)</h2>
+  <input type="file" id="videoFile" accept="video/*" />
+  <button id="uploadBtn">Upload & Tampilkan Video</button>
+  <div id="output" style="margin-top: 20px; display:none;">
+    <h4>Link Video (URL Local):</h4>
+    <a id="videoLink" href="#" target="_blank"></a>
+    <video id="videoPreview" controls></video>
+  </div>
+</div>
+
+<script>
+  const uploadBtn = document.getElementById('uploadBtn');
+  const videoFileInput = document.getElementById('videoFile');
+  const output = document.getElementById('output');
+  const videoLink = document.getElementById('videoLink');
+  const videoPreview = document.getElementById('videoPreview');
+
+  uploadBtn.addEventListener('click', () => {
+    const file = videoFileInput.files[0];
+    if (!file) {
+      alert('Pilih file video dulu!');
+      return;
+    }
+    const videoURL = URL.createObjectURL(file);
+    videoLink.href = videoURL;
+    videoLink.textContent = file.name;
+    videoPreview.src = videoURL;
+    output.style.display = 'block';
+  });
+</script>
+</body>
+</html>
