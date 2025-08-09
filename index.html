@@ -1,1 +1,60 @@
-hello world
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Payment Gateway</title>
+  <!-- CDN Bootstrap untuk styling cepat -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body class="bg-light">
+  <div class="container py-5">
+    <div class="card mx-auto" style="max-width: 400px;">
+      <div class="card-body">
+        <h3 class="card-title mb-4 text-center">Pembayaran</h3>
+        <form id="paymentForm">
+          <div class="mb-3">
+            <label for="amount" class="form-label">Masukkan Nominal (Rp)</label>
+            <input
+              type="number"
+              class="form-control"
+              id="amount"
+              name="amount"
+              placeholder="Misal: 50000"
+              required
+              min="1000"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Bayar Sekarang</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS CDN (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const form = document.getElementById("paymentForm");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const amount = document.getElementById("amount").value;
+      if (!amount || amount < 1000) {
+        alert("Masukkan nominal minimal Rp 1000");
+        return;
+      }
+
+      // Contoh redirect ke link payment gateway Lynk.id dengan nominal dinamis
+      // Ganti link ini sesuai dengan sistem kamu
+      const paymentUrl = `https://lynk.id/rahmatso/r389zd09o1kd/checkout?amount=${amount}`;
+
+      // Redirect ke halaman pembayaran
+      window.location.href = paymentUrl;
+    });
+  </script>
+</body>
+</html>
